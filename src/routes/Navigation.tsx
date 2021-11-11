@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,31 +11,35 @@ import routes from "./routes";
 
 const Navigation = () => {
   return (
-    <Router>
-      <div className="main-layout">
-        <nav>
-          <img src={logo} alt="React Logo" />
-          <ul>
-            {routes.map(({path, name}) => (
-              <li key={path} >
-                <NavLink activeClassName="nav-active" exact to={path}>{name}</NavLink>
-              </li>
+    <Suspense fallback={null}>
+      {/*the fallback component is used when the page is loading*/}
+      <Router>
+        <div className="main-layout">
+          <nav>
+            <img src={logo} alt="React Logo" />
+            <ul>
+              {routes.map(({path, name}) => (
+                <li key={path} >
+                  <NavLink activeClassName="nav-active" exact to={path}>{name}</NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+
+          <Switch>
+            {routes.map(({Component, path}) => (
+              <Route 
+                key={path} path={path} 
+                render={() => <Component />} 
+              />
             ))}
-          </ul>
-        </nav>
+            <Redirect to="/lazy1" />
+          </Switch>
+        </div>
+      </Router>
+    </Suspense>
 
-
-        <Switch>
-          {routes.map(({Component, path}) => (
-            <Route 
-              key={path} path={path} 
-              render={() => <Component />} 
-            />
-          ))}
-          <Redirect to="/lazy1" />
-        </Switch>
-      </div>
-    </Router>
   );
 }
 

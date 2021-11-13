@@ -20,7 +20,7 @@ const Navigation = () => {
             <ul>
               {routes.map(({path, name}) => (
                 <li key={path} >
-                  <NavLink activeClassName="nav-active" exact to={path}>{name}</NavLink>
+                  <NavLink activeClassName="nav-active" to={path}>{name}</NavLink>
                 </li>
               ))}
             </ul>
@@ -34,7 +34,7 @@ const Navigation = () => {
                 render={() => <Component />} 
               />
             ))}
-            <Redirect to="/lazy1" />
+            <Redirect to="/lazyload" />
           </Switch>
         </div>
       </Router>

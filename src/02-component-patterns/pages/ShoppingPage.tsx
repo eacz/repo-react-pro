@@ -26,6 +26,16 @@ const ShoppingPage = () => {
           <ProductTitle className="text-white text-bold" />
           <ProductButtons className="custom-buttons" />
         </ProductCard>
+        <ProductCard
+          product={product}
+          style={{
+            backgroundColor: '#70d1f8'
+          }}
+        >
+          <ProductImage style={{borderBottomLeftRadius: 50, borderBottomRightRadius: 50}} />
+          <ProductTitle style={{color: 'blue'}} />
+          <ProductButtons style={{color: 'blueviolet'}} />
+        </ProductCard>
       </div>
     </div>
   )

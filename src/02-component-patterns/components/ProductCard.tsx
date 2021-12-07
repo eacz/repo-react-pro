@@ -1,7 +1,7 @@
 import styles from '../styles/styles.module.css'
 import useProduct from '../hooks/useProduct'
 import { createContext, ReactElement } from 'react'
-import { Product, ProductContextProps } from '../interfaces/productInterfaces'
+import { OnChangeArgs, Product, ProductContextProps } from '../interfaces/productInterfaces';
 import ExtendsStyles from '../interfaces/extendStyles'
 
 export const productContext = createContext({} as ProductContextProps)
@@ -10,12 +10,12 @@ const { Provider } = productContext
 export interface Props extends ExtendsStyles {
   product: Product,
   children?: ReactElement | ReactElement[],
-  onChange?: () => void 
+  onChange?: (args: OnChangeArgs) => void 
 }
 
 
 const ProductCard = ({product, children, className = '', style, onChange  } : Props) => {
-  const { increasedBy, productCount } = useProduct({onChange})
+  const { increasedBy, productCount } = useProduct({onChange, product})
   return (
     <Provider
       value={{

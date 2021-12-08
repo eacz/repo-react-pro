@@ -10,12 +10,13 @@ const { Provider } = productContext
 export interface Props extends ExtendsStyles {
   product: Product,
   children?: ReactElement | ReactElement[],
-  onChange?: (args: OnChangeArgs) => void 
+  onChange?: (args: OnChangeArgs) => void,
+  value?: number
 }
 
 
-const ProductCard = ({product, children, className = '', style, onChange  } : Props) => {
-  const { increasedBy, productCount } = useProduct({onChange, product})
+const ProductCard = ({product, children, className = '', style, onChange, value  } : Props) => {
+  const { increasedBy, productCount } = useProduct({onChange, product, value})
   return (
     <Provider
       value={{

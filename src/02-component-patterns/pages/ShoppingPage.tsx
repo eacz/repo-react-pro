@@ -51,6 +51,7 @@ const ShoppingPage = () => {
             className='bg-dark'
             product={product}
             onChange={onProductCountChange} 
+            value={shoppingCard[product.id]?.count ||  0}
           >
             <ProductImage className='custom-image' />
             <ProductTitle className='text-white text-bold' />
@@ -60,7 +61,12 @@ const ShoppingPage = () => {
       </div>
       <div className='shopping-cart'>
         {Object.entries(shoppingCard).map(([id, product]) => (
-          <ProductCard key={id} className='bg-dark' product={product} style={{width: 100}} >
+          <ProductCard 
+            className='bg-dark' style={{width: 100}} 
+            key={id} product={product}
+            value={product.count}
+            onChange={onProductCountChange}
+          >
             <ProductImage className='custom-image' />
             <ProductButtons className='custom-buttons' style={{display: 'flex', justifyContent:'center'}} />
           </ProductCard>

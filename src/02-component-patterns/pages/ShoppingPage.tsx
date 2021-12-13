@@ -1,61 +1,10 @@
-import { useState } from 'react'
 import ProductCard, { ProductButtons, ProductImage, ProductTitle } from '../components'
-import { OnChangeArgs, Product } from '../interfaces/productInterfaces';
+import { products } from '../data/products';
+import useShoppingCart from '../hooks/useShoppingCart';
 import '../styles/custom-styles.css'
 
-const product = {
-  id: '1',
-  title: 'Coffee Mug - Card',
-  img: './coffee-mug.png',
-}
-
-const product2 = {
-  id: '2',
-  title: 'Coffee Mug - Meme',
-  img: './coffee-mug2.png',
-}
-
-const products: Product[] = [product, product2]
-
-interface ProductInCart extends Product {
-  count: number
-}
-
 const ShoppingPage = () => {
-  const [shoppingCard, setShoppingCard] = useState<{ [key: string]: ProductInCart }>({})
-
-  const onProductCountChange = ({count, product}: OnChangeArgs) => {
-
-   setShoppingCard(oldShoppingCart => {
-
-    const productInCart: ProductInCart = oldShoppingCart[product.id] || {...product, count: 0}
-    
-    //update the shopping cart state
-    if(Math.max(productInCart.count + count, 0) > 0){
-      productInCart.count += count
-      return {
-        ...oldShoppingCart,
-        [product.id] : productInCart
-      }
-    } 
-    // delete product
-    else {
-      const { [product.id]: toDelete, ...rest } = oldShoppingCart  
-      return rest
-    }
-
-    // if(count === 0){
-    //    const { [product.id]: toDelete, ...rest } = oldShoppingCart
-        
-    //    return rest
-    //  } else {
-    //   return {
-    //     ...oldShoppingCart,
-    //     [product.id]: {...product, count}
-    //   }
-    // }
-   })
-  }
+  const { shoppingCart, onProductCountChange } = useShoppingCart()
   
   return (
     <div>
@@ -68,7 +17,7 @@ const ShoppingPage = () => {
             className='bg-dark'
             product={product}
             onChange={onProductCountChange} 
-            value={shoppingCard[product.id]?.count ||  0}
+            value={shoppingCart[product.id]?.count ||  0}
           >
             <ProductImage className='custom-image' />
             <ProductTitle className='text-white text-bold' />
@@ -77,7 +26,7 @@ const ShoppingPage = () => {
         ))}
       </div>
       <div className='shopping-cart'>
-        {Object.entries(shoppingCard).map(([id, product]) => (
+        {Object.entries(shoppingCart).map(([id, product]) => (
           <ProductCard 
             className='bg-dark' style={{width: 100}} 
             key={id} product={product}

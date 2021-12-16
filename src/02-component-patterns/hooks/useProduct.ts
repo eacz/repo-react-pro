@@ -12,7 +12,7 @@ const useProduct = ({onChange, product, value = 0, initialValues}: Props) => {
   const [productCount, setProductCount] = useState<number>(initialValues?.count || value)
   const isMounted = useRef(false)  
   
-  const increasedBy = (value: number) => {
+  const increasedBy = (value: number) => {    
     let newValue = Math.max(productCount + value, 0)
     
     if(initialValues?.maxCount){
@@ -21,6 +21,10 @@ const useProduct = ({onChange, product, value = 0, initialValues}: Props) => {
     
     setProductCount(newValue)
     onChange && onChange({product, count: newValue})
+  }
+
+  const reset = () => {
+    setProductCount(initialValues?.count || value)
   }
 
   useEffect(() => {
@@ -35,7 +39,10 @@ const useProduct = ({onChange, product, value = 0, initialValues}: Props) => {
 
   return {
     productCount, 
-    increasedBy
+    maxCount: initialValues?.maxCount,
+    isMaxCountReached: !!initialValues?.maxCount && initialValues.maxCount === productCount,
+    increasedBy,
+    reset
   }
 }
 

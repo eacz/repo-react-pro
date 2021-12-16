@@ -13,9 +13,13 @@ const useProduct = ({onChange, product, value = 0, initialValues}: Props) => {
   const isMounted = useRef(false)  
   
   const increasedBy = (value: number) => {
-
-    const newValue = Math.max(productCount + value, 0)
-    setProductCount(p => Math.max(p + value, 0))
+    let newValue = Math.max(productCount + value, 0)
+    
+    if(initialValues?.maxCount){
+      newValue = Math.min( newValue, initialValues.maxCount )
+    }
+    
+    setProductCount(newValue)
     onChange && onChange({product, count: newValue})
   }
 

@@ -16,7 +16,7 @@ const ShoppingPage = () => {
         product={product}
         initialValues={{
           count: 4,
-          maxCount: 10
+          maxCount: 21
         }}
       >
         <ProductImage className='custom-image' />

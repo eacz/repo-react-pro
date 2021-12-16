@@ -19,9 +19,17 @@ const ShoppingPage = () => {
           maxCount: 21
         }}
       >
-        <ProductImage className='custom-image' />
-        <ProductTitle className='text-white text-bold' />
-        <ProductButtons className='custom-buttons' />
+        {
+          (text) => (
+            <>  
+              {text}
+              <ProductImage className='custom-image' />
+              <ProductTitle className='text-white text-bold' />
+              <ProductButtons className='custom-buttons' />
+            </>
+          )
+        }
+      
       </ProductCard>
     </div>
   )

@@ -4,6 +4,7 @@ import {
   Route,
   NavLink
 } from "react-router-dom";
+import RegisterPage from "../03-forms/pages/RegisterPage";
 import logo from '../logo.svg'
 
 const Navigation = () => {
@@ -17,6 +18,9 @@ const Navigation = () => {
               <NavLink activeClassName="nav-active" exact to="/">Home</NavLink>
             </li>
             <li>
+              <NavLink activeClassName="nav-active" exact to="/register">Register</NavLink>
+            </li>
+            <li>
               <NavLink activeClassName="nav-active" exact to="/about">About</NavLink>
             </li>
             <li>
@@ -27,6 +31,9 @@ const Navigation = () => {
 
 
         <Switch>
+          <Route path="/register">
+            <RegisterPage />
+          </Route>
           <Route path="/about">
             <h1>about</h1>
           </Route>

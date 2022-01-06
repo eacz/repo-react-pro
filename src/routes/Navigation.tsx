@@ -3,13 +3,9 @@ import {
   Switch,
   Route,
   NavLink
-} from "react-router-dom";
-import FormikBasicPage from "../03-forms/pages/FormikBasicPage";
-import RegisterPage from "../03-forms/pages/RegisterPage";
+} from "react-router-dom" 
 import logo from '../logo.svg'
-import FormikYupPage from '../03-forms/pages/FormikYupPage';
-import FormikComponents from '../03-forms/pages/FormikComponents';
-import FormikAbstraction from "../03-forms/pages/FormikAbstraction";
+import { RegisterPage, FormikYupPage, FormikBasicPage, FormikAbstraction, FormikComponents } from '../03-forms/pages'
 
 const Navigation = () => {
   return (

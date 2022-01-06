@@ -1,8 +1,6 @@
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import Checkbox from '../components/Checkbox'
-import Input from '../components/Input'
-import Select from '../components/Select'
+import { Checkbox, Input, Select } from '../components/Formik/index'
 import '../styles/styles.css'
 
 const FormikAbstraction = () => {

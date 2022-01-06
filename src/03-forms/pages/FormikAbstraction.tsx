@@ -1,11 +1,14 @@
-import { Formik, Form, ErrorMessage, Field } from 'formik'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
+import Checkbox from '../components/Checkbox'
+import Input from '../components/Input'
+import Select from '../components/Select'
 import '../styles/styles.css'
 
-const FormikComponents = () => {
+const FormikAbstraction = () => {
   return (
     <div>
-      <h1>Formik Components</h1>
+      <h1>Formik Abstract</h1>
       <Formik
         initialValues={{ firstName: '', lastName: '', email: '', terms: false, jobType: '' }}
         onSubmit={(values) => console.log(values)}
@@ -21,32 +24,19 @@ const FormikComponents = () => {
       >
         {(_formik) => (
           <Form>
-            <label htmlFor='firstName'>First Name</label>
-            <Field name='firstName' type='text' />
-            <ErrorMessage component='span' name='firstName' />
 
-            <label htmlFor='lastName'>Last Name</label>
-            <Field name='lastName' type='text' />
-            <ErrorMessage component='span' name='lastName' />
-
-            <label htmlFor='email'>Email Address</label>
-            <Field name='email' type='email' />
-            <ErrorMessage component='span' name='email' />
-
-            <label htmlFor='jobType'>Job type</label>
-            <Field name='jobType' as='select'>
+            <Input label='First Name' name='firstName' type='text' placeholder='First Name' />
+            <Input label='Last Name' name='lastName' type='text' placeholder='Last Name' />
+            <Input label="Email" name='email' type='email' placeholder="Email" />
+            
+            <Select name="jobType" label="Job type">
               <option value=''>Pick something</option>
               <option value='frontend'>FrontEnd Developer</option>
               <option value='backend'>Backend Developer</option>
               <option value='developer'>Developer</option>
-            </Field>
-            <ErrorMessage component='span' name='jobType' />
+            </Select>
 
-            <label>
-              <Field name='terms' type='checkbox' />
-              Terms and Conditions
-            </label>
-            <ErrorMessage component='span' name='terms' />
+            <Checkbox name='terms' label='Terms and conditions' />
 
             <button type='submit'>Submit</button>
           </Form>
@@ -56,4 +46,4 @@ const FormikComponents = () => {
   )
 }
 
-export default FormikComponents
+export default FormikAbstraction

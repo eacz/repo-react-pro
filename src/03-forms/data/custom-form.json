@@ -5,5 +5,19 @@
     "placeholder": "Pedro",
     "label": "First Name",
     "value": ""
+  },
+  {
+    "type": "input",
+    "name": "lastName",
+    "placeholder": "Perez",
+    "label": "Last Name",
+    "value": ""
+  },
+  {
+    "type": "email",
+    "name": "email",
+    "placeholder": "example@example.com",
+    "label": "Email",
+    "value": ""
   }
 ]
